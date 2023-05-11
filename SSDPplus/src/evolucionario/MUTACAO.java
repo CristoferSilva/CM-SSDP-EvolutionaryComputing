@@ -83,6 +83,64 @@ public class MUTACAO {
         
         return pNovo;
     }
+
+    public static Pattern unGeneTrocaOuAdicionaOuExcluiBigBangTheory(Pattern p, String tipoAvaliacao){
+        HashSet<Integer> itens = p.getItens();
+        
+        if(itens.isEmpty()){//Se indivíduo não tiver gene, retorne um novo aleatório de 1D
+            itens.add(D.itensUtilizados[Const.random.nextInt(D.numeroItensUtilizados)]);            
+            return new Pattern(itens, tipoAvaliacao);
+        }
+        
+        HashSet<Integer> novoItens = new HashSet<>();
+        double r = Const.random.nextDouble();
+        if(r < 0.33){//Excluir gene
+            
+            int indiceExcluir = Const.random.nextInt(itens.size());
+            Iterator iterator = itens.iterator();
+            for(int i = 0; iterator.hasNext(); i++){
+                if(i != indiceExcluir){
+                    novoItens.add((Integer)iterator.next());
+                }else{
+                    iterator.next();
+                }
+            }
+            
+        }else if(r > 0.66){//Troca gene por outro aleatório
+            //Excluir gene
+            int indiceExcluir = Const.random.nextInt(itens.size());
+            Iterator iterator = itens.iterator();
+            for(int i = 0; iterator.hasNext(); i++){
+                if(i != indiceExcluir){
+                    novoItens.add((Integer)iterator.next());
+                }else{
+                    iterator.next();
+                }
+            }
+                   
+            //Adiciona novo gene
+            while(novoItens.size() < itens.size()){
+                novoItens.add(D.itensUtilizados[Const.random.nextInt(D.numeroItensUtilizados)]);            
+            }
+        }else{//Adiciona gene aleatoriamente
+            //Adiciona novo gene
+            novoItens.addAll(itens);
+            while(novoItens.size() < itens.size() + 1){
+                novoItens.add(D.itensUtilizados[Const.random.nextInt(D.numeroItensUtilizados)]);            
+            }
+        }                          
+              
+        
+        Pattern pNovo = new Pattern(novoItens, tipoAvaliacao);
+        
+        //Imprimir itens nos idivíduos gerados via cruzamento
+        //DPinfo.imprimirItens(p);
+        //System.out.print(r + "->");
+        //DPinfo.imprimirItens(pNovo);
+        //System.out.println();
+        
+        return pNovo;
+    }
  
     /**Gerar uma população a partir de mutações unGeneTrocaOuAdicionaOuExclui
      * 33% das vezes troca (objetivo: explorar aleatoriamente espaço D)

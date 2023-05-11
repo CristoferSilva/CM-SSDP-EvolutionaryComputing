@@ -50,7 +50,8 @@ public class CRUZAMENTO {
                 }
                 
             }else{
-                Pnovo[indicePnovo++] = MUTACAO.unGeneTrocaOuAdicionaOuExclui(P[selecao[indiceSelecao++]], tipoAvaliacao);                                                       
+                //ALTERAAAAAR AQUIIIIIIIIIIIIIIII
+                Pnovo[indicePnovo++] = MUTACAO.unGeneTrocaOuAdicionaOuExcluiBigBangTheory(P[selecao[indiceSelecao++]], tipoAvaliacao);                                                       
             }         
         
         //Imprimir itens nos idivíduos gerados via cruzamento
