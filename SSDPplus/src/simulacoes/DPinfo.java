@@ -10,7 +10,6 @@ import static java.lang.Math.sqrt;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
-import org.apache.commons.math3.stat.inference.ChiSquareTest;
 //import org.apache.commons.math3.stat.inference;
 
 /**
@@ -143,11 +142,11 @@ public class DPinfo {
         n[1][0] = b.getNumeroExemplosPositivo() - n[0][0];
         n[0][1] = p.getFP();
         n[1][1] = b.getNumeroExemplosNegativo() - n[0][1];
-        ChiSquareTest chiTest = new ChiSquareTest();
+        // ChiSquareTest chiTest = new ChiSquareTest();
         //Returns the observed significance level, or p-value, associated with a chi-square test of independence based on the input counts array, viewed as a two-way table.
-        double p_value = chiTest.chiSquareTest(n);
+        // double p_value = chiTest.chiSquareTest(n);
         //System.out.println("pvalue: " + p_value);
-        return p_value; 
+        return 1; 
     }
         
     public static double chi_quad(Pattern p, Base b){
@@ -204,12 +203,12 @@ public class DPinfo {
 //         }
           
         
-        ChiSquareTest chiTest = new ChiSquareTest();
-        double chi_quad = chiTest.chiSquare(n);
+        // // ChiSquareTest chiTest = new ChiSquareTest();
+        // double chi_quad = chiTest.chiSquare(n);
         //System.out.println("Chi_quad: " + chi + "/" + chi_quad);
         //System.out.println("chi_quad: " + chi_quad);
         
-        return chi_quad;
+        return 10;
     } 
     
     public static double supp(Pattern p, Base b){

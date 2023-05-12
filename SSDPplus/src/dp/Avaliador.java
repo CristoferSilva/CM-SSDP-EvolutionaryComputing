@@ -8,7 +8,6 @@ package dp;
 import static java.lang.Math.sqrt;
 import java.util.HashSet;
 import java.util.Iterator;
-import org.apache.commons.math3.stat.inference.ChiSquareTest;
 
 /**
  *
@@ -202,14 +201,14 @@ public class Avaliador {
         n[1][1] = D.numeroExemplosNegativo - n[0][1];
         
 
-        ChiSquareTest chiTest = new ChiSquareTest();
-        double chi_quad = chiTest.chiSquare(n);
+        // // ChiSquareTest chiTest = new ChiSquareTest();
+        // double chi_quad = chiTest.chiSquare(n);
         //System.out.println("Chi_quad: " + chi + "/" + chi_quad);
         //System.out.println("chi_quad: " + chi_quad);
-        if(Double.isNaN(chi_quad)){
-            return 0;
-        }       
-        return chi_quad;
+        // if(Double.isNaN(chi_quad)){
+        //     return 0;
+        // }       
+        return 10;
     }
     
     public static double p_value(int TP, int FP){
@@ -234,15 +233,15 @@ public class Avaliador {
         n[1][0] = D.numeroExemplosPositivo - n[0][0];
         n[0][1] = FP;
         n[1][1] = D.numeroExemplosNegativo - n[0][1];
-        ChiSquareTest chiTest = new ChiSquareTest();
-        //Returns the observed significance level, or p-value, associated with a chi-square test of independence based on the input counts array, viewed as a two-way table.
-        double p_value = chiTest.chiSquareTest(n);
+        // ChiSquareTest chiTest = new ChiSquareTest();
+        // //Returns the observed significance level, or p-value, associated with a chi-square test of independence based on the input counts array, viewed as a two-way table.
+        // double p_value = chiTest.chiSquareTest(n);
         
-        if(Double.isNaN(p_value)){
-            return 1.0;
-        }
+        // if(Double.isNaN(p_value)){
+        //     return 1.0;
+        // }
         //System.out.println("pvalue: " + p_value);
-        return p_value;        
+        return 10;        
     }
     
     public static double lift(int TP, int FP){

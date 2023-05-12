@@ -103,7 +103,6 @@ public class CRUZAMENTO {
         novosPattern[1] = new Pattern(novoItens2, tipoAvaliacao);
         return novosPattern;           
     }
-
     
     /////////////////////////////////////////////////////////////
     // AND                 //////////////////////////////////////

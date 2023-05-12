@@ -11,7 +11,14 @@ import dp.Pattern;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Stream;
+
+import javax.management.Query;
 
 
 /**
@@ -56,17 +63,53 @@ public class SELECAO {
      * @version 1.0
      */
     public static int[] torneioBinario(int tamanhoPopulacao, Pattern[] P){
-        int[] indices = new int[tamanhoPopulacao];
-        for(int i = 0; i < indices.length; i++){
+        List<Integer> indices = new ArrayList<Integer>();
+        int[] arrayResult;
+        for(int i = 0; i < tamanhoPopulacao; i++){
+            Map<Double, Integer> qualidadeAndIndex = new HashMap<Double, Integer>();
+            List<Double> qualidade = new ArrayList<Double>();
+
             int indiceP1 = Const.random.nextInt(P.length);
             int indiceP2 = Const.random.nextInt(P.length);
-            if(P[indiceP1].getQualidade() > P[indiceP2].getQualidade()){
-                indices[i] = indiceP1;
-            }else{
-                indices[i] = indiceP2;         
+            int indiceP3 = Const.random.nextInt(P.length);
+            int indiceP4 = Const.random.nextInt(P.length);
+
+            qualidade.add(P[indiceP1].getQualidade());
+            qualidade.add(P[indiceP2].getQualidade());
+            qualidade.add(P[indiceP3].getQualidade());
+            qualidade.add(P[indiceP4].getQualidade());
+
+
+            for (int j = 0; j < P[indiceP1].getQualidade(); j++) {
+                qualidade.add(P[indiceP1].getQualidade());
             }
+            for (int j = 0; j < P[indiceP2].getQualidade(); j++) {
+                qualidade.add(P[indiceP2].getQualidade());
+            }
+            for (int j = 0; j < P[indiceP3].getQualidade(); j++) {
+                qualidade.add(P[indiceP3].getQualidade());
+            } 
+            for (int j = 0; j < P[indiceP4].getQualidade(); j++) {
+                qualidade.add(P[indiceP4].getQualidade());
+            }
+
+            qualidadeAndIndex.put(P[indiceP1].getQualidade(), indiceP1);
+            qualidadeAndIndex.put(P[indiceP2].getQualidade(), indiceP2);
+            qualidadeAndIndex.put(P[indiceP3].getQualidade(), indiceP3);
+            qualidadeAndIndex.put(P[indiceP4].getQualidade(), indiceP4);
+      
+            Double keyQualidadeOFTheBest = qualidade.get(Const.random.nextInt(qualidade.size()));
+            int qualidadeIndex = qualidadeAndIndex.get(keyQualidadeOFTheBest);
+
+            indices.add(qualidadeIndex);
         }
-        return indices;
+
+        arrayResult =  new int[indices.size()];
+        for (int i = 0; i < arrayResult.length; i++) {
+            arrayResult[i] = indices.get(i);
+        }
+
+        return arrayResult;
     }
     
     /**
